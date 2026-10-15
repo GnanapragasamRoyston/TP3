@@ -82,4 +82,16 @@ public class Magazine extends Article{
 
         return getPrix();
     }
+
+    @Override
+    public String toString() {
+        return "Magazine{" +
+                "ISSN='" + ISSN + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", prix=" + getPrix() +
+                ", nb_stock=" + getNb_stock() +
+                ", periodicite='" + periodicite + '\'' +
+                ", datePublication=" + datePublication +
+                '}';
+    }
 }

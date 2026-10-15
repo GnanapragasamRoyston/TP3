@@ -61,6 +61,31 @@ public class Etablissement {
         return ajouterArticle(magazine);
     }
 
+    public Article rechercher(String numero) {
+        for (int i = 0; i < nbArticles; i++) {
+            if (articles[i].getNumero().equals(numero)) {
+                return articles[i];
+            }
+        }
+        return null;
+    }
+
+    public boolean ajouter(String numero, int quantite) {
+        Article article = rechercher(numero);
+        if (article == null) {
+            return false;
+        }
+        return article.ajouter(quantite);
+    }
+
+    public boolean retirer(String numero, int quantite) {
+        Article article = rechercher(numero);
+        if (article == null) {
+            return false;
+        }
+        return article.retirer(quantite);
+    }
+
     public boolean ajouterBonDepot(BonDepot bonDepot) {
         if (bonDepot == null || nbBonsDepot == MAX_BONS_DEPOT) {
             return false;
@@ -68,7 +93,7 @@ public class Etablissement {
 
         int position = nbBonsDepot;
         while (position > 0
-                && !bonDepot.getDateEmission().isBefore(bonsDepot[position - 1].getDateEmission())) {
+                && bonDepot.getDateEmission().isBefore(bonsDepot[position - 1].getDateEmission())) {
             position--;
         }
 
@@ -89,6 +114,17 @@ public class Etablissement {
         BonDepot bonDepot = new BonDepot(numeroTelephone);
         ajouterBonDepot(bonDepot);
         return bonDepot;
+    }
+
+    // ajoute une ligne au bon de dépôt et met à jour le stock de l'article déjà existant
+    public boolean ajouterLigne(BonDepot bonDepot, String numero, int nbExemplaires) {
+        if (bonDepot == null || rechercher(numero) == null) {
+            return false;
+        }
+        if (!bonDepot.ajouterLigne(numero, nbExemplaires)) {
+            return false;
+        }
+        return ajouter(numero, nbExemplaires);
     }
 
     public void afficher() {

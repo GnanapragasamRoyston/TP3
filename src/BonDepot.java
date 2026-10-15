@@ -43,11 +43,7 @@ public class BonDepot {
     }
 
     public int getNbArticles() {
-        int total = 0;
-        for (int i = 0; i < nbLignes; i++) {
-            total += lignesDepot[i].getNbExemplaires();
-        }
-        return total;
+        return nbLignes;
     }
 
     public int getNbLignes() {
@@ -84,12 +80,15 @@ public class BonDepot {
 
     @Override
     public String toString() {
-        return "BonDepot{" +
+        String resultat = "BonDepot{" +
                 "numeroBon=" + numeroBon +
                 ", numeroTelephone='" + numeroTelephone + '\'' +
                 ", dateEmission=" + dateEmission +
                 ", nbArticles=" + getNbArticles() +
-                ", nbLignes=" + nbLignes +
                 '}';
+        for (int i = 0; i < nbLignes; i++) {
+            resultat += "\n    " + lignesDepot[i];
+        }
+        return resultat;
     }
 }

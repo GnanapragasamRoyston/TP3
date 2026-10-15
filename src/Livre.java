@@ -10,10 +10,6 @@ public class Livre extends Article {
         this.nb_page = nb_page;
     }
 
-    public Livre(String description, double prix, int nb_stock, int isbn, int nb_page) {
-        this(description, prix, nb_stock, String.valueOf(isbn), nb_page);
-    }
-
     public Livre() {
     }
 
@@ -44,5 +40,16 @@ public class Livre extends Article {
             return getPrix() * 0.5;
         }
         return getPrix();
+    }
+
+    @Override
+    public String toString() {
+        return "Livre{" +
+                "isbn='" + isbn + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", prix=" + getPrix() +
+                ", nb_stock=" + getNb_stock() +
+                ", nb_page=" + nb_page +
+                '}';
     }
 }

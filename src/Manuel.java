@@ -9,11 +9,6 @@ public class Manuel extends Livre{
         this.niv_scolaire = niv_scolaire;
     }
 
-    public Manuel(String description, double prix, int nb_stock, int isbn, int nb_page,
-                  String matiere, String niv_scolaire) {
-        this(description, prix, nb_stock, String.valueOf(isbn), nb_page, matiere, niv_scolaire);
-    }
-
     public Manuel() {
     }
 
@@ -31,5 +26,18 @@ public class Manuel extends Livre{
 
     public void setNiv_scolaire(String niv_scolaire) {
         this.niv_scolaire = niv_scolaire;
+    }
+
+    @Override
+    public String toString() {
+        return "Manuel{" +
+                "isbn='" + getIsbn() + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", prix=" + getPrix() +
+                ", nb_stock=" + getNb_stock() +
+                ", nb_page=" + getNb_page() +
+                ", matiere='" + matiere + '\'' +
+                ", niv_scolaire='" + niv_scolaire + '\'' +
+                '}';
     }
 }
